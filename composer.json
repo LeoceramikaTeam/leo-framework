@@ -1,0 +1,31 @@
+{
+    "name": "maxcxam/leo-framework",
+    "description": "PHP MVC ORM framework",
+    "type": "project",
+    "require": {
+        "j4mie/idiorm": "^1.5",
+        "respect/validation": "^1.1",
+        "guzzlehttp/guzzle": "^6.4",
+        "kriswallsmith/assetic": "^1.4",
+        "leon-mbs/zdb": "^1.2",
+        "sybio/image-workshop": "^2.1",
+        "filp/whoops": "^2.5",
+        "klein/klein": "^2.1",
+        "radiosilence/ham": "dev-master",
+        "maximebf/debugbar": "^1.16",
+        "monolog/monolog": "^2.0",
+        "smarty/smarty": "^3.1",
+        "altorouter/altorouter": "^2.0"
+    },
+    "license": "asdsad",
+    "authors": [
+        {
+            "name": "Rudenko Maksym",
+            "email": "maxcxam1979@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require-dev": {
+        "symfony/profiler-pack": "^1.0"
+    }
+}
