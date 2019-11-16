@@ -25,7 +25,7 @@
             "email": "maxcxam1979@gmail.com"
         }
     ],
-    "minimum-stability": "beta",
+    "minimum-stability": "dev",
     "require-dev": {
         "symfony/profiler-pack": "^1.0"
     }
