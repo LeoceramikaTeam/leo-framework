@@ -2,3 +2,5 @@ addDefaultCharset utf8;
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
+RewriteCond $1 !^(index\.php|img|theme|assets|global|templates|dumper|landing|albero_categories\.json|biankonero_categories\.json|robots\.txt|favicon\.png|files)
+RewriteRule ^(.*)$ index.php?/$1 [L]

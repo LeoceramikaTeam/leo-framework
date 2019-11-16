@@ -61,4 +61,11 @@ class Loader
             $this->model($autoload['model']);
         }
     }
+
+    public function classes($classNames = array())
+    {
+        foreach ($classNames as $class) {
+            load_class($class, 'Classes', NULL, 'Framework\Classes\\');
+        }
+    }
 }
