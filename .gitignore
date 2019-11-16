@@ -2,3 +2,5 @@
 .IDEA
 vendor
 vendor/
+cache/*
+application/templates_c/*
