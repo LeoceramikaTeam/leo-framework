@@ -11,13 +11,15 @@ class Loader
 
     }
 
-    public function view($file, $data)
+    public function view($file, $data = NULL)
     {
         $smarty = new SmartyTpl();
-        $data = (Array) $data;
-        if(count($data) > 0) {
-            foreach($data as $key => $value) {
-                $smarty->assign($key, $value);
+        if(!is_null($data)) {
+            $data = (Array) $data;
+            if(count($data) > 0) {
+                foreach($data as $key => $value) {
+                    $smarty->assign($key, $value);
+                }
             }
         }
         $smarty->display($file.'.tpl');
@@ -50,7 +52,7 @@ class Loader
         if (isset($autoload['classes']) && count($autoload['classes']) > 0)
         {
             foreach($autoload['classes'] as $class) {
-                load_class($class, 'Classes', NULL, 'Framework\Classes\\');
+                load_class($class, 'application'.DIRECTORY_SEPARATOR.'Classes', NULL, 'Framework\Classes\\');
             }
 
         }
@@ -65,7 +67,7 @@ class Loader
     public function classes($classNames = array())
     {
         foreach ($classNames as $class) {
-            load_class($class, 'Classes', NULL, 'Framework\Classes\\');
+            load_class($class, 'application'.DIRECTORY_SEPARATOR.'Classes', NULL, 'Framework\Classes\\');
         }
     }
 }

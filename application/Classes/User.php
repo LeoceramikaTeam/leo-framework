@@ -9,6 +9,7 @@ use Framework\System\Model;
 
 class User extends Model
 {
+    public static $ololo = 'user';
 
     public function __construct()
     {

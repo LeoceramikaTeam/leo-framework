@@ -21,6 +21,5 @@ class Base extends EntryPoint
     {
         $user = $this->user->getUserById($id);
         $this->load->view('user', $user->as_array());
-
     }
 }

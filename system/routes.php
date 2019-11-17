@@ -1,4 +1,7 @@
 <?php
+
+use Framework\Controller\Home;
+
 $routes = [];
 $controllers = scandir(APPPATH.'Controller');
 $excludes = ['__construct', 'get_instance'];
@@ -19,14 +22,19 @@ foreach ($controllers as $controller) {
 
 $klein = new \Klein\Klein();
 
+$klein->respond('GET','/', function ($request)  {
+    $controller = new Framework\Controller\Home();
+    $id = $request->id ? $request->id : NULL;
+    return $controller->base($id);
+});
+
 foreach ($routes as $path=>$callback) {
     $klein->respond('GET', '/'.$path.'/[i:id]?', function ($request) use($callback) {
         $controller = new $callback();
-        return $controller->base($request->id);
+        $id = $request->id ? $request->id : NULL;
+        return $controller->base($id);
     });
 }
-$klein->respond('/posts/[create|edit:action]?/[i:id]?', function ($request, $response) {
-    echo '<pre>';
-    print_r($request);
-});
+
+
 $klein->dispatch();
