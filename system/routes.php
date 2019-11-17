@@ -1,6 +1,5 @@
 <?php
 
-use Framework\Controller\Home;
 
 $routes = [];
 $controllers = scandir(APPPATH.'Controller');
