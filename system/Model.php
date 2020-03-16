@@ -24,7 +24,7 @@ class Model implements Entity
         return \ORM::for_table($this->table)->find_one($id);
     }
 
-    public function findAll(int $limit = 0, int $offset = 0)
+    public function findAll(int $limit = NULL, int $offset = NULL)
     {
         // TODO: Implement findAll() method.
     }
