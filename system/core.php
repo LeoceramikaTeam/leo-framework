@@ -1,4 +1,5 @@
 <?php
+require_once APPPATH.'Functions/dev.func.php';
 
 function &load_class($class, $directory = 'system', $param = NULL, $namespaces = NAMESPACES)
 {

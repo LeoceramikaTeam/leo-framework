@@ -32,4 +32,10 @@ class EntryPoint
     {
         return self::$instance;
     }
+
+    public function get_class($className)
+    {
+        $class = strtolower($className);
+        $this->$class = load_class($className, 'application/Classes', '', 'Framework\\Classes\\');
+    }
 }
