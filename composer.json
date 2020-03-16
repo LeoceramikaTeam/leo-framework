@@ -2,7 +2,7 @@
     "name": "maxcxam/leo-framework",
     "description": "PHP MVC ORM framework",
     "type": "project",
-    "version": "0.3RoutesAnno",
+    "version": "0.4",
     "require": {
         "j4mie/idiorm": "^1.5",
         "respect/validation": "^1.1",
