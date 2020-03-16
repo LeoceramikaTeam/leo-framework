@@ -11,12 +11,14 @@ class Loader
 
     }
 
-    public function view($file, $data = NULL)
+    public function view($file, $data = NULL, $cache=1)
     {
         $smarty = new SmartyTpl();
+        $smarty->caching = $cache;
         if(!is_null($data)) {
             $data = (Array) $data;
             if(count($data) > 0) {
+
                 foreach($data as $key => $value) {
                     $smarty->assign($key, $value);
                 }

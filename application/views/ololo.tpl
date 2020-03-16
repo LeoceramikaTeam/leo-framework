@@ -1,2 +1,2 @@
 
-<div>asdfasdasdasd</div> <div>{$id}</div>
+<div>ololo</div> <div>{$id}</div><div>{$name}</div>

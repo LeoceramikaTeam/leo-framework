@@ -1,6 +1,7 @@
 <?php
 
 namespace Framework\System;
+
 require_once BASEPATH.'Interfaces'.DIRECTORY_SEPARATOR.'Entity.php';
 
 use Framework\System\Interfaces\Entity;

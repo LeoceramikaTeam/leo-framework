@@ -10,5 +10,7 @@ final class RouterAnno
 
     public $realPath;
 
+    public $methods;
+
     public $params;
 }

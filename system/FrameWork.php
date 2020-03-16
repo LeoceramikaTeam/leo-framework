@@ -13,8 +13,10 @@ if (file_exists(APPPATH.'config/constants.php'))
 require_once BASEPATH.'core.php';
 require_once BASEPATH.'SmartyTpl.php';
 require_once BASEPATH.'anno.php';
+require_once BASEPATH.'Model.php';
 
 load_class('EntryPoint');
+
 
 require BASEPATH.'routes.php';
 

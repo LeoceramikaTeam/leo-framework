@@ -16,7 +16,7 @@ class User extends Model
         parent::__construct('users');
     }
 
-    public function getUserById(int $id)
+    public function getUserById($id)
     {
         return $this->findOne($id);
     }

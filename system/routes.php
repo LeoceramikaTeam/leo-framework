@@ -2,10 +2,8 @@
 
 $reader = new \Doctrine\Common\Annotations\AnnotationReader();
 $klein = new \Klein\Klein();
-
 $routes = [];
 $controllers = scandir(APPPATH.'Controller');
-$excludes = ['__construct', 'get_instance'];
 
 foreach ($controllers as $controller) {
     $path = explode('.', $controller)[0];
@@ -17,31 +15,38 @@ foreach ($controllers as $controller) {
     }
 }
 
-function registerRoute($method) {
+function registerRoute($method, $class, $methodName) {
     global $klein;
-    d($method);
+    $path = $method->path;
+    $httpMethod = !empty($method->methods) ? $method->methods : "GET";
+    if(property_exists($method, 'params')) {
+        if(!empty($method->params)) {
+            foreach($method->params as $key=>$type) {
+                if($type == 'integer' or $type == 'int' or $type == 'i') $type = 'i';
+                else $type = '';
+                $path .= '/['.$type.':'.$key.']?';
+            }
+        }
+    }
+    $klein->respond($httpMethod, $path, function ($request) use($class, $methodName ) {
+        $params = $request->paramsNamed();
+        $controller = new $class();
+        return $controller->{$methodName}($params);
+    });
 }
 
 
 foreach ($routes as $path=>$callback) {
     $class = new ReflectionClass($callback);
-    $methods = array_map(function($elem) {
-        if($elem->name!='__construct' && $elem->name!='get_instance') return $elem;
-    }, $class->getMethods(ReflectionMethod::IS_PUBLIC));
-    $methods = array_diff($methods, array(''));
-    array_map("registerRoute", $methods);
-    foreach($methods as $method) {
-        echo "<pre>".print_r($reader->getMethodAnnotations($method), TRUE).'</pre>';
-    }
-    $callbacks = [];
-    $klein->respond('GET', '/'.$path.'/[i:id]?', function ($request) use($callback) {
 
-        $controller = new $callback();
-        return $controller->base($request->id);
-    });
+    $methods = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+
+    foreach($methods as $method) {
+        if(count($route = $reader->getMethodAnnotations($method)) > 0) {
+            registerRoute($route[0], $callback, $method->name);
+        }
+    }
+
+    $callbacks = [];
 }
-$klein->respond('/posts/[create|edit:action]?/[i:id]?', function ($request, $response) {
-    echo '<pre>';
-    print_r($request);
-});
 $klein->dispatch();
